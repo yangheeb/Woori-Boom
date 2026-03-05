@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;700&display=swap"
         rel="stylesheet">
-  <link th:href="@{/css/boom.css}" rel="stylesheet">
+  <link th:href="@{/boom.css}" rel="stylesheet">
 </head>
 <body>
 
@@ -33,28 +33,19 @@
 
     <div class="avatar"
          th:style="'background:' + ${avatarColors[stat.index % avatarColors.length]}">
-      <span th:text="${#strings.substring(player.name, 0, 1)}"></span>
+      <span th:text="${#strings.substring(player.userName, 0, 1)}"></span>
     </div>
 
-    <p class="player-name" th:text="${player.name}"></p>
+    <p class="player-name" th:text="${player.userName}"></p>
 
     <div class="score"
-         th:text="${(player.upCount - player.downCount) > 0
-                      ? '+' + (player.upCount - player.downCount)
-                      : (player.upCount - player.downCount)}"
-         th:classappend="${(player.upCount - player.downCount) > 0}
-                           ? 'score-positive'
-                           : (${(player.upCount - player.downCount) < 0}
-                              ? 'score-negative' : 'score-zero')">
-    </div>
-
-    <div class="score-detail">
-      <span class="up-count" th:text="'▲ ' + ${player.upCount}"></span>
-      <span class="down-count" th:text="'▼ ' + ${player.downCount}"></span>
+         th:text="${player.cnt > 0 ? '+' + player.cnt : player.cnt}"
+         th:classappend="${player.cnt > 0} ? 'score-positive'
+                         : (${player.cnt < 0} ? 'score-negative' : 'score-zero')">
     </div>
 
     <div class="btn-row">
-      <form th:action="@{/boom/players/{id}/vote(id=${player.id})}"
+      <form th:action="@{/boom/players/{id}/vote(id=${player.userId})}"
             method="post" style="flex:1; display:flex;">
         <input type="hidden" name="direction" value="up">
         <button type="submit" class="btn-vote btn-up">
@@ -62,12 +53,12 @@
           <span class="label">붐업</span>
         </button>
       </form>
-      <form th:action="@{/boom/players/{id}/vote(id=${player.id})}"
+      <form th:action="@{/boom/players/{id}/vote(id=${player.userId})}"
             method="post" style="flex:1; display:flex;">
         <input type="hidden" name="direction" value="down">
         <button type="submit" class="btn-vote btn-down">
           <span class="emoji">👎</span>
-          <span class="label">분다</span>
+          <span class="label">붐다</span>
         </button>
       </form>
     </div>
