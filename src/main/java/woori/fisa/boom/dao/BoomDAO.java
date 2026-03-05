@@ -1,10 +1,12 @@
 package woori.fisa.boom.dao;
 
+import org.springframework.stereotype.Repository;
 import woori.fisa.boom.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class BoomDAO {
     private final List<User> list = new ArrayList<>();
     private int nextId = 1;
