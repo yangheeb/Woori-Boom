@@ -1,0 +1,199 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  background: #0e0e12;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px;
+}
+
+h1 {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 52px;
+  letter-spacing: 6px;
+  background: linear-gradient(135deg, #ff4757, #ff6b81, #ffa502, #ff4757);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+  margin-bottom: 8px;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.subtitle {
+  color: #555;
+  font-size: 13px;
+  letter-spacing: 3px;
+  margin-bottom: 36px;
+}
+
+/* 이름 입력 폼 */
+.add-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.add-form input[type="text"] {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px solid #2a2a35;
+  background: #16161d;
+  color: #fff;
+  font-size: 15px;
+  font-family: 'Noto Sans KR', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.add-form input[type="text"]:focus { border-color: #ff4757; }
+.add-form input[type="text"]::placeholder { color: #555; }
+
+.btn-add {
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #ff4757, #ff6348);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  transition: transform 0.12s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+
+.btn-add:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
+}
+
+.btn-add:active { transform: scale(0.96); }
+
+/* 빈 상태 */
+.empty-state { margin-top: 60px; text-align: center; color: #444; }
+.empty-state .emoji { font-size: 48px; margin-bottom: 12px; }
+.empty-state p { font-size: 15px; }
+
+/* 카드 그리드 */
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 860px;
+}
+
+.player-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 28px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s, border-color 0.3s;
+}
+
+.player-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Black Han Sans', sans-serif;
+  color: #000;
+}
+
+.player-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #eee;
+  word-break: break-all;
+  text-align: center;
+}
+
+.score {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 36px;
+  margin: 4px 0;
+  transition: color 0.2s;
+}
+
+.score-positive { color: #ff4757; }
+.score-negative { color: #3742fa; }
+.score-zero { color: #555; }
+
+.score-detail { font-size: 12px; color: #666; margin-bottom: 6px; }
+.score-detail span { margin: 0 6px; }
+.up-count { color: #ff6b81; }
+.down-count { color: #546de5; }
+
+/* 투표 버튼 */
+.btn-row { display: flex; gap: 8px; width: 100%; }
+
+.btn-vote {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 0;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s, filter 0.15s;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.btn-vote:hover { filter: brightness(1.3); }
+.btn-vote:active { transform: scale(0.92); }
+.btn-up { background: rgba(255, 71, 87, 0.12); }
+.btn-down { background: rgba(55, 66, 250, 0.12); }
+.btn-vote .emoji { font-size: 20px; }
+.btn-vote .label { font-size: 11px; font-weight: 700; color: #888; }
+
+/* 하단 */
+.footer-area {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-count { color: #444; font-size: 13px; letter-spacing: 1px; }
+
+.btn-reset {
+  padding: 10px 28px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  background: transparent;
+  color: #666;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-reset:hover { border-color: #ff4757; color: #ff4757; }
